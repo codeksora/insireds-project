@@ -8,22 +8,14 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form">
+        <?php echo form_open('alumnos/' . $alumno->id . '/eliminar_s'); ?>
           <div class="box-body">
           	<div class="row">
-          		<div class="col-md-3">
+          		<div class="col-md-3">          			
           			<div class="row">
           				<div class="col-md-12">
           					<div class="form-group">
-				              <input type="hidden" name="id" value="<?php echo $alumno->id; ?>">
-				            </div>
-          				</div>
-          			</div>
-          			
-          			<div class="row">
-          				<div class="col-md-12">
-          					<div class="form-group">
-				              <input type="text" class="form-control" value="<?php echo $alumno->nombre . ' ' . $alumno->apellidoPa . ' ' . $alumno->apellidoMa; ?>" disabled>
+                      <?php echo form_input('', set_value('', $alumno->nombre . ' ' . $alumno->apellidoPa . ' ' . $alumno->apellidoMa), array('class'=>'form-control', 'disabled'=>'')); ?>
 				            </div>
           				</div>
           			</div>

@@ -54,7 +54,10 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['alumnos/(:num)/editar'] = 'Alumnos/editar/$1';
+$route['alumnos/(:num)/editar_s'] = 'Alumnos/editar_s/$1';
+$route['alumnos/(:num)/editar_photo_s'] = 'Alumnos/editar_photo_s/$1';
 $route['alumnos/(:num)/eliminar'] = 'Alumnos/eliminar/$1';
+$route['alumnos/(:num)/eliminar_s'] = 'Alumnos/eliminar_s/$1';
 
 $route['docentes/(:num)/editar'] = 'Docentes/editar/$1';
 $route['docentes/(:num)/eliminar'] = 'Docentes/eliminar/$1';

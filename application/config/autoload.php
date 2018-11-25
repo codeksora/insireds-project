@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database');
+$autoload['libraries'] = array('database', 'form_validation');
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url');
+$autoload['helper'] = array('form', 'url');
 
 /*
 | -------------------------------------------------------------------
@@ -136,5 +136,6 @@ $autoload['model'] = array(
 	'Municipios_model', 
 	'Grupos_model', 
 	'Colonias_model', 
-	'Grados_model'
+	'Grados_model',
+	'GradosAtencion_model'
 );

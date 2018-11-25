@@ -11,8 +11,13 @@ class Padres_model extends CI_Model {
 		return $query->result();
 	}
 
-	// public function findById($id) {
-	// 	$query = $this->db->get_where('padre', array('id' => $id));
-	// 	return $query->row();
-	// }
+	public function findAll_Dropdown() {
+		$query = $this->db->get('padre');
+		$array[''] = 'Seleccionar';
+		foreach($query->result() as $row ){
+	        $array[$row->id] = $row->nombre . ' ' . $row->apellidoPa . ' ' . $row->apellidoMa;
+	    }
+
+		return $array;
+	}
 }

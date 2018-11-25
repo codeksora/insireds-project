@@ -2,6 +2,17 @@
 	<div class="col-xs-12">
 	  <div class="box">
 	    <div class="box-header">
+	    	<div class="row">
+	    		<?php if($this->session->flashdata('eliminar_alumno_success')): ?>
+	            <div class="col-md-12">
+	              <div class="alert alert-success alert-dismissible">
+	                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                  <h4><i class="icon fa fa-check"></i> Correcto!</h4>
+	                  <?php echo $this->session->flashdata('eliminar_alumno_success') ?>
+	                </div>
+	            </div>
+	          <?php endif; ?>
+	    	</div>
 	      <a href="<?php echo site_url('alumnos/agregar'); ?>" class="btn btn-primary">Agregar alumno</a>
 	    </div>
 	    <!-- /.box-header -->
