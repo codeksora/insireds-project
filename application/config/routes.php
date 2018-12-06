@@ -60,4 +60,14 @@ $route['alumnos/(:num)/eliminar'] = 'Alumnos/eliminar/$1';
 $route['alumnos/(:num)/eliminar_s'] = 'Alumnos/eliminar_s/$1';
 
 $route['docentes/(:num)/editar'] = 'Docentes/editar/$1';
+$route['docentes/(:num)/editar_s'] = 'Docentes/editar_s/$1';
+$route['docentes/(:num)/editar_photo_s'] = 'Docentes/editar_photo_s/$1';
+$route['docentes/(:num)/editar_contrasena_s'] = 'Docentes/editar_contrasena_s/$1';
 $route['docentes/(:num)/eliminar'] = 'Docentes/eliminar/$1';
+$route['docentes/(:num)/eliminar_s'] = 'Docentes/eliminar_s/$1';
+
+$route['padres/(:num)/editar'] = 'Padres/editar/$1';
+$route['padres/(:num)/editar_s'] = 'Padres/editar_s/$1';
+$route['padres/(:num)/editar_photo_s'] = 'Padres/editar_photo_s/$1';
+$route['padres/(:num)/eliminar'] = 'Padres/eliminar/$1';
+$route['padres/(:num)/eliminar_s'] = 'Padres/eliminar_s/$1';

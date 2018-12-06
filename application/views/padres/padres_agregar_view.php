@@ -8,17 +8,17 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-    	<?php echo form_open('alumnos/agregar_s'); ?>
+    	<?php echo form_open('padres/agregar_s'); ?>
           <div class="box-body">
           	<div class="row">
           		<div class="col-md-12">
           			<div class="row">
-          				<?php if($this->session->flashdata('agregar_alumno')): ?>
+          				<?php if($this->session->flashdata('agregar_padre')): ?>
 				            <div class="col-md-12">
 				              <div class="alert alert-success alert-dismissible">
 				                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 				                  <h4><i class="icon fa fa-check"></i> Correcto!</h4>
-				                  <?php echo $this->session->flashdata('agregar_alumno') ?>
+				                  <?php echo $this->session->flashdata('agregar_padre') ?>
 				                </div>
 				            </div>
 				          <?php endif; ?>
@@ -71,7 +71,7 @@
 				            </div>
 			            </div>
 
-		          		<div class="col-md-12">
+		          		<div class="col-md-6">
 		          			<div class="form-group <?php echo (form_error('municipio')) ? 'has-error' : ''; ?>">
 			                <?php echo form_label('Municipio:'); ?>
 			                <?php echo form_dropdown('municipio', $municipios, set_value('municipio'), array('class' => 'form-control')); ?>
@@ -79,7 +79,7 @@
 				            </div>
 		          		</div>
 
-		          		<div class="col-md-12">
+		          		<div class="col-md-6">
 		          			<div class="form-group <?php echo (form_error('colonia')) ? 'has-error' : ''; ?>">
 			                <?php echo form_label('Colonia:'); ?>
 			                <?php echo form_dropdown('colonia', $colonias, set_value('colonia'), array('class' => 'form-control')); ?>
@@ -87,51 +87,27 @@
 				            </div>
 		          		</div>
 
-		          		<div class="col-md-4">
-		          			<div class="form-group <?php echo (form_error('grado')) ? 'has-error' : ''; ?>">
-			                <?php echo form_label("Grado:"); ?>
-			                <?php echo form_dropdown('grado', $grados, set_value('grado'), array('class' => 'form-control')); ?>
-			                <?php echo '<span class="help-block">' . form_error('grado') . '</span>'; ?>
-				            </div>
-		          		</div>
-
-		          		<div class="col-md-4">
-		          			<div class="form-group <?php echo (form_error('atencion')) ? 'has-error' : ''; ?>">
-			                <?php echo form_label("Grado de Atención:"); ?>
-			                <?php echo form_dropdown('atencion', $gradosAtencion, set_value('atencion'), array('class' => 'form-control')); ?>
-			                <?php echo '<span class="help-block">' . form_error('atencion') . '</span>'; ?>
-			              </div>
-		          		</div>
-
-		          		<div class="col-md-4">
-		          			<div class="form-group <?php echo (form_error('grupo')) ? 'has-error' : ''; ?>">
-			                <?php echo form_label('Grupo:'); ?>
-			                <?php echo form_dropdown('grupo', $grupos, set_value('grupo'), array('class' => 'form-control')); ?>
-			                <?php echo form_error('grupo', '<span class="help-block">', '</span>'); ?>
-				            </div>
-		          		</div>
-
 		          		<div class="col-md-12">
-		          			<div class="form-group <?php echo (form_error('tutor')) ? 'has-error' : ''; ?>">
-			                <?php echo form_label('Padre / Tutor:'); ?>
-			                <?php echo form_dropdown('tutor', $padres, set_value('tutor'), array('class' => 'form-control')); ?>
-			                <?php echo form_error('tutor', '<span class="help-block">', '</span>'); ?>
+		          			<div class="form-group <?php echo (form_error('telefono')) ? 'has-error' : ''; ?>">
+				                <?php echo form_label('Telefóno:'); ?>
+				                <?php echo form_input('telefono', set_value('telefono'), array('class'=>'form-control')); ?>
+				                <?php echo form_error('telefono', '<span class="help-block">', '</span>'); ?>
 				            </div>
 		          		</div>
 
-		          		<div class="col-md-12">
-		          			<div class="form-group <?php echo (form_error('autorizado1')) ? 'has-error' : ''; ?>">
-			                <?php echo form_label('Tercer autorizado 1:'); ?>
-			                <?php echo form_dropdown('autorizado1', $padres, set_value('autorizado1'), array('class' => 'form-control')); ?>
-			                <?php echo form_error('autorizado1', '<span class="help-block">', '</span>'); ?>
+		          		<div class="col-md-6">
+		          			<div class="form-group <?php echo (form_error('ine')) ? 'has-error' : ''; ?>">
+				                <?php echo form_label('INE:'); ?>
+				                <?php echo form_input('ine', set_value('ine'), array('class'=>'form-control')); ?>
+				                <?php echo form_error('ine', '<span class="help-block">', '</span>'); ?>
 				            </div>
 		          		</div>
 
-		          		<div class="col-md-12">
-		          			<div class="form-group <?php echo (form_error('autorizado2')) ? 'has-error' : ''; ?>">
-				              <?php echo form_label('Tercer autorizado 2:'); ?>
-			                <?php echo form_dropdown('autorizado2', $padres, set_value('autorizado2'), array('class' => 'form-control')); ?>
-			                <?php echo form_error('autorizado2', '<span class="help-block">', '</span>'); ?>
+		          		<div class="col-md-6">
+		          			<div class="form-group <?php echo (form_error('parentesco')) ? 'has-error' : ''; ?>">
+			                <?php echo form_label('Parentesco:'); ?>
+			                <?php echo form_dropdown('parentesco', $parentescos, set_value('parentesco'), array('class' => 'form-control')); ?>
+			                <?php echo form_error('parentesco', '<span class="help-block">', '</span>'); ?>
 				            </div>
 		          		</div>
           			</div>	
@@ -142,8 +118,8 @@
           <!-- /.box-body -->
 
           <div class="box-footer">
-            <?php echo form_submit('', 'Guardar alumno', array('class'=>'btn btn-primary')); ?>
-            <?php echo anchor(site_url('alumnos'), 'Cancelar', array('class'=>'btn btn-danger')); ?>
+            <?php echo form_submit('', 'Guardar padre', array('class'=>'btn btn-primary')); ?>
+            <?php echo anchor(site_url('padres'), 'Cancelar', array('class'=>'btn btn-danger')); ?>
           </div>
         <?php echo form_close(); ?>
       </div>

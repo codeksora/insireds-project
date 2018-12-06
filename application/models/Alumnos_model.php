@@ -7,7 +7,8 @@ class Alumnos_model extends CI_Model {
 	private $nombre;
 
 	public function findAll() {
-		$query = $this->db->get('alumno');
+		$this->db->where('a.estado', 1);
+		$query = $this->db->get('alumno a');
 		return $query->result();
 	}
 
@@ -17,6 +18,7 @@ class Alumnos_model extends CI_Model {
 		$this->db->from('alumno a');
 		$this->db->join('foto f', 'f.id = a.foto');
 		$this->db->where('a.id', $id);
+		$this->db->where('a.estado', 1);
 		$query = $this->db->get();
 		return $query->row();
 	}
@@ -28,5 +30,10 @@ class Alumnos_model extends CI_Model {
 	public function upd($id, $data) {
 		$this->db->where('id', $id);
 		return $this->db->update('alumno', $data);
+	}
+
+	public function del($id) {
+		$this->db->where('id', $id);
+		return $this->db->update('alumno', array('estado'=>0));
 	}
 }

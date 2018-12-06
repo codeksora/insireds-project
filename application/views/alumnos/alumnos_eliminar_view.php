@@ -4,7 +4,7 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">¿Desea eliminar a este usuario?</h3>
+          <h3 class="box-title">¿Desea eliminar a este alumno?</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
@@ -27,10 +27,10 @@
           <!-- /.box-body -->
 
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Eliminar de todas maneras</button>
-            <a href="<?php echo site_url('alumnos'); ?>" class="btn btn-danger">Cancelar</a>
+            <?php echo form_submit('', 'Eliminar de todas maneras', array('class'=>'btn btn-primary')); ?>
+            <?php echo anchor(site_url('alumnos'), 'Cancelar', array('class'=>'btn btn-danger')); ?>
           </div>
-        </form>
+        <?php echo form_close(); ?>
       </div>
       <!-- /.box -->
     </div>

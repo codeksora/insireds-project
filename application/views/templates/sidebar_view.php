@@ -7,12 +7,12 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo base_url('assets/dist/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
+          <img src="<?php echo base_url('uploads/' . $this->session->userdata('foto_usuario')); ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo $this->session->userdata('nombre_completo'); ?></p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> Conectado</a>
         </div>
       </div>
 
@@ -41,7 +41,7 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('alumnos'); ?>"><i class="fa fa-circle-o"></i> Todas las alumnos</a></li>
+            <li><a href="<?php echo site_url('alumnos'); ?>"><i class="fa fa-circle-o"></i> Todos los alumnos</a></li>
             <li><a href="<?php echo site_url('alumnos/agregar'); ?>"><i class="fa fa-circle-o"></i> Agregar alumno</a></li>
           </ul>
         </li>
@@ -52,7 +52,7 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('docentes'); ?>"><i class="fa fa-circle-o"></i> Todas las docentes</a></li>
+            <li><a href="<?php echo site_url('docentes'); ?>"><i class="fa fa-circle-o"></i> Todos los docentes</a></li>
             <li><a href="<?php echo site_url('docentes/agregar'); ?>"><i class="fa fa-circle-o"></i> Agregar docente</a></li>
           </ul>
         </li>
@@ -63,11 +63,11 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('padres'); ?>"><i class="fa fa-circle-o"></i> Todas las padres</a></li>
+            <li><a href="<?php echo site_url('padres'); ?>"><i class="fa fa-circle-o"></i> Todos los padres</a></li>
             <li><a href="<?php echo site_url('padres/agregar'); ?>"><i class="fa fa-circle-o"></i> Agregar padre</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Reportes</span></a></li>
+        <li><a href="<?php echo site_url('reportes'); ?>"><i class="fa fa-link"></i> <span>Reportes</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

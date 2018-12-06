@@ -1,7 +1,13 @@
 <div class="row">
 	<div class="col-xs-12">
 	  <div class="box">
-	    <div class="box-header">
+	    <div class="box-header with-border">
+	    	
+	    	<h3 class="box-title">Lista de alumnos</h3>
+	      
+	    </div>
+	    <!-- /.box-header -->
+	    <div class="box-body">
 	    	<div class="row">
 	    		<?php if($this->session->flashdata('eliminar_alumno_success')): ?>
 	            <div class="col-md-12">
@@ -13,10 +19,8 @@
 	            </div>
 	          <?php endif; ?>
 	    	</div>
-	      <a href="<?php echo site_url('alumnos/agregar'); ?>" class="btn btn-primary">Agregar alumno</a>
-	    </div>
-	    <!-- /.box-header -->
-	    <div class="box-body">
+	    	<a href="<?php echo site_url('alumnos/agregar'); ?>" class="btn btn-sm btn-primary">Agregar alumno</a>
+	    	<br><br>
 	      <table id="datatable_1" class="table table-bordered table-hover">
 	        <thead>
 	        <tr>

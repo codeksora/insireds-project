@@ -9,6 +9,7 @@ class Alumnos extends CI_Controller {
 		parent::__construct();
 
         $this->load->library('session');
+        if(!$this->session->userdata('logeado')) redirect();
 
 		$this->load->model('Alumnos_model');
 		$this->load->model('Padres_model');
@@ -23,9 +24,9 @@ class Alumnos extends CI_Controller {
         $this->load->library('upload', $config);
 
         $config = array(
-	        array('field' => 'nombre', 'label' => 'Nombre', 'rules' => 'required|alpha'),
-	        array('field' => 'apellidoPa', 'label' => 'Apellido Paterno', 'rules' => 'required|alpha'),
-	        array('field' => 'apellidoMa', 'label' => 'Apellido Materno', 'rules' => 'required|alpha'),
+	        array('field' => 'nombre', 'label' => 'Nombre', 'rules' => 'required'),
+	        array('field' => 'apellidoPa', 'label' => 'Apellido Paterno', 'rules' => 'required'),
+	        array('field' => 'apellidoMa', 'label' => 'Apellido Materno', 'rules' => 'required'),
 	        array('field' => 'calle', 'label' => 'Calle', 'rules' => 'required'),
 	        array('field' => 'numeroInt', 'label' => 'Int.', 'rules' => 'required|integer'),
 	        array('field' => 'numeroExt', 'label' => 'Ext.', 'rules' => 'required|integer'),
@@ -46,12 +47,17 @@ class Alumnos extends CI_Controller {
 		$this->data['grados'] = $this->Grados_model->findAll_Dropdown();
 		$this->data['gradosAtencion'] = $this->GradosAtencion_model->findAll_Dropdown();
 		$this->data['padres'] = $this->Padres_model->findAll_Dropdown();
+		$this->data['page_header'] = 'Alumnos';
+		$this->data['page_url'] = 'alumnos';
+		$this->data['page_icon'] = 'fa-book';
+		$this->data['optional_description'] = 'Panel de administración de alumnos';
 	}
-
+	/* VISTAS */
 	public function index() {
-		$data = array(
-			'alumnos' => $this->Alumnos_model->findAll()
-		);
+		$data = $this->data;
+
+		$data['alumnos'] = $this->Alumnos_model->findAll();
+		
 		$this->load->view('templates/header_view', $data);
 		$this->load->view('alumnos/alumnos_view');
 		$this->load->view('templates/footer_view');
@@ -59,6 +65,8 @@ class Alumnos extends CI_Controller {
 
 	public function agregar() {
 		$data = $this->data;
+		//Breadcrumb (Nombre general, url general, Nombre del módulo, icono de fontAwesome)
+		$data['breadcrumb'] = 'Agregar alumno';
 
 		$this->load->view('templates/header_view', $data);
 		$this->load->view('alumnos/alumnos_agregar_view');
@@ -66,10 +74,11 @@ class Alumnos extends CI_Controller {
 	}
 
 	public function editar($id = NULL) {
-		if($id == NULL) {
-			redirect($this->url_redirect);
+		if($id == NULL || $this->Alumnos_model->findById($id) == FALSE) {
+			redirect('alumnos');
 		} else {
 			$data = $this->data;
+			$data['breadcrumb'] = 'Editar alumno';
 			$data['alumno'] = $this->Alumnos_model->findById($id);			
 
 			$this->load->view('templates/header_view', $data);
@@ -79,12 +88,12 @@ class Alumnos extends CI_Controller {
 	}
 
 	public function eliminar($id = NULL) {
-		if($id == NULL) {
+		if($id == NULL || $this->Alumnos_model->findById($id) == FALSE) {
 			redirect($this->url_redirect);
 		} else {
-			$data = array(
-				'alumno' => $this->Alumnos_model->findById($id)
-			);
+			$data = $this->data;
+			$data['breadcrumb'] = 'Eliminar alumno';
+			$data['alumno'] = $this->Alumnos_model->findById($id);
 
 			$this->load->view('templates/header_view', $data);
 			$this->load->view('alumnos/alumnos_eliminar_view');
@@ -96,12 +105,7 @@ class Alumnos extends CI_Controller {
 	public function agregar_s() {
 
 	        if ($this->form_validation->run() == FALSE) {
-
-	            $data = $this->data;
-
-				$this->load->view('templates/header_view', $data);
-				$this->load->view('alumnos/alumnos_agregar_view');
-				$this->load->view('templates/footer_view');
+	            $this->agregar();
 	        } else {
 				$data_alumno['nombre'] = $this->input->post('nombre');
 				$data_alumno['apellidoPa'] = $this->input->post('apellidoPa');
@@ -117,6 +121,7 @@ class Alumnos extends CI_Controller {
 				$data_alumno['autorizado1'] = $this->input->post('autorizado1');
 				$data_alumno['autorizado2'] = $this->input->post('autorizado2');
 				$data_alumno['atencion'] = $this->input->post('atencion');
+				$data_alumno['estado'] = 1;
 
 				$data_foto['foto'] = 'user_profile.jpg';
 		  		$data_foto['nombre'] = $this->input->post('nombre') . ' ' . $this->input->post('apellidoPa') . ' ' . $this->input->post('apellidoMa');
@@ -137,18 +142,12 @@ class Alumnos extends CI_Controller {
 
 	public function editar_s($id = NULL) {
 
-		if($id == NULL) redirect('alumnos');
+		if($id == NULL || $this->Alumnos_model->findById($id) == FALSE) redirect('alumnos');
 
         //Si hace envio de datos desde formulario
     	if ($this->form_validation->run() == FALSE) { 
 
-			// Si la validación del formulario no es aceptada.
-			$data = $this->data;
-			$data['alumno'] = $this->Alumnos_model->findById($id);	
-
-			$this->load->view('templates/header_view', $data);
-			$this->load->view('alumnos/alumnos_editar_view');
-			$this->load->view('templates/footer_view');	
+			$this->editar($id);
 		} else { 
 
 			// Si la validación es aceptada.
@@ -178,7 +177,7 @@ class Alumnos extends CI_Controller {
 
 	public function editar_photo_s($id = NULL) {
 
-		if($id == NULL) redirect('alumnos');
+		if($id == NULL || $this->Alumnos_model->findById($id) == FALSE) redirect('alumnos');
 		
 		$foto_id = $this->input->post('foto_id');
 
@@ -188,12 +187,7 @@ class Alumnos extends CI_Controller {
 
             $this->session->set_flashdata('editar_foto_alumno_error', $flash_resp);
 
-            $data = $this->data;
-			$data['alumno'] = $this->Alumnos_model->findById($id);
-
-			$this->load->view('templates/header_view', $data);
-			$this->load->view('alumnos/alumnos_editar_view');
-			$this->load->view('templates/footer_view');	
+            $this->editar($id);
         } else {
 
             $flash_resp = 'Foto actualizada.';
@@ -210,10 +204,12 @@ class Alumnos extends CI_Controller {
 	}
 
 	public function eliminar_s($id = NULL) {
-		if($id == NULL) redirect('alumnos');
+		if($id == NULL || $this->Alumnos_model->findById($id) == FALSE) redirect('alumnos');
 
 		$flash_resp = 'Elimminado correctamente.';
 		$this->session->set_flashdata('eliminar_alumno_success', $flash_resp);
+
+		$this->Alumnos_model->del($id);
 
 		redirect('alumnos');
 	}
