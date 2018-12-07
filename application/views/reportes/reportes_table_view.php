@@ -83,10 +83,11 @@
 			        <tfoot>
 			        <tr>
 			          <th>#</th>
-			          <th>Nombre</th>
-			          <th>Apellido Paterno</th>
-			          <th>Apellido Materno</th>
-			          <th>Acción</th>
+			          <th>Alumno</th>
+			          <th>Padre / Tutor</th>
+			          <th>Docente</th>
+			          <th>Fecha</th>
+			          <th>Hora</th>
 			        </tr>
 			        </tfoot>
 			      </table>
