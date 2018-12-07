@@ -34,6 +34,17 @@ class Padres_model extends CI_Model {
 		return $query->row();
 	}
 
+	public function findByINE($ine) {
+		$this->db->select('p.id, p.nombre, p.apellidoPa, p.apellidoMa, p.calle, p.numeroInt, p.numeroExt, p.municipio, p.colonia, p.telefono, p.ine, p.parentesco,
+			f.id as foto_id, f.foto as foto_img, f.nombre as foto_nombre');
+		$this->db->from('padre p');
+		$this->db->join('foto f', 'f.id = p.foto');
+		$this->db->where('p.ine', $ine);
+		$this->db->where('p.estado', 1);
+		$query = $this->db->get();
+		return $query->row();
+	}
+
 	public function add($data) {
 		return $this->db->insert('padre', $data);
 	}

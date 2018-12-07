@@ -46,6 +46,7 @@ class Login extends CI_Controller {
 	    			'nombre_usuario' => $nombreUsuario,
 	    			'nombre_completo' => $docente->nombre . ' ' . $docente->apellidoPa,
 	    			'tipo_usuario' => $docente->tipo,
+	    			'tipo_usuario_id' => $docente->tipousuario_id,
 	    			'foto_usuario' => $docente->foto_img,
 	    			'logeado' => TRUE
 	    		);

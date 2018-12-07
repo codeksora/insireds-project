@@ -30,7 +30,7 @@ class Docentes_model extends CI_Model {
 
 	public function getDocenteLoginById($id) {
 		$this->db->select('d.id, d.nombre, d.apellidoPa, d.apellidoMa,
-			f.id as foto_id, f.foto as foto_img, f.nombre as foto_nombre, t.tipo');
+			f.id as foto_id, f.foto as foto_img, f.nombre as foto_nombre, t.tipo, t.id as tipousuario_id');
 		$this->db->from('docente d');
 		$this->db->join('foto f', 'f.id = d.foto');
 		$this->db->join('login l', 'l.id = d.usuario');

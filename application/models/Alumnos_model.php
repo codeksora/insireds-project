@@ -23,6 +23,19 @@ class Alumnos_model extends CI_Model {
 		return $query->row();
 	}
 
+	public function findByPadre($padre_id) {
+		$this->db->select('a.id, a.nombre, a.apellidoPa, a.apellidoMa, a.calle, a.numeroInt, a.numeroExt, a.municipio, a.colonia, a.grado, a.atencion, a.grupo, a.tutor, a.autorizado1, a.autorizado2,
+			f.id as foto_id, f.foto as foto_img, f.nombre as foto_nombre');
+		$this->db->from('alumno a');
+		$this->db->join('foto f', 'f.id = a.foto');
+		$this->db->or_where('a.tutor', $padre_id);
+		$this->db->or_where('a.autorizado1', $padre_id);
+		$this->db->or_where('a.autorizado2', $padre_id);
+		$this->db->where('a.estado', 1);
+		$query = $this->db->get();
+		return $query->row();
+	}
+
 	public function add($data) {
 		return $this->db->insert('alumno', $data);
 	}

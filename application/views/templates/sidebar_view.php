@@ -16,24 +16,13 @@
         </div>
       </div>
 
-      <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-        </div>
-      </form>
-      <!-- /.search form -->
-
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
         <li><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-dashboard"></i> <span>Escritorio</span></a></li>
         <li><a href="<?php echo site_url('salidas'); ?>"><i class="fa fa-link"></i> <span>Ingresar salidas</span></a></li>
+        <?php if($this->session->userdata('tipo_usuario_id') == 1): ?>
         <li class="treeview">
           <a href="<?php echo site_url('#'); ?>"><i class="fa fa-book"></i> <span>Alumnos</span>
             <span class="pull-right-container">
@@ -45,6 +34,8 @@
             <li><a href="<?php echo site_url('alumnos/agregar'); ?>"><i class="fa fa-circle-o"></i> Agregar alumno</a></li>
           </ul>
         </li>
+      <?php endif; ?>
+        <?php if($this->session->userdata('tipo_usuario_id') == 1): ?>
         <li class="treeview">
           <a href="<?php echo site_url('#'); ?>"><i class="fa fa-graduation-cap"></i> <span>Docentes</span>
             <span class="pull-right-container">
@@ -56,6 +47,8 @@
             <li><a href="<?php echo site_url('docentes/agregar'); ?>"><i class="fa fa-circle-o"></i> Agregar docente</a></li>
           </ul>
         </li>
+      <?php endif; ?>
+      <?php if($this->session->userdata('tipo_usuario_id') == 1): ?>
         <li class="treeview">
           <a href="<?php echo site_url('#'); ?>"><i class="fa fa-user"></i> <span>Padres</span>
             <span class="pull-right-container">
@@ -67,6 +60,7 @@
             <li><a href="<?php echo site_url('padres/agregar'); ?>"><i class="fa fa-circle-o"></i> Agregar padre</a></li>
           </ul>
         </li>
+      <?php endif; ?>
         <li><a href="<?php echo site_url('reportes'); ?>"><i class="fa fa-link"></i> <span>Reportes</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
