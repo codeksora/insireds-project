@@ -60,7 +60,7 @@
 	      			<div class="col-md-12">
 	      				<div class="form-group">
 	              		<?php echo form_label('Dirección:'); ?>
-		              	<?php echo form_input('nombre', set_value('nombre', $alumno->nombre), array('class'=>'form-control', 'disabled'=>'')); ?>
+		              	<?php echo form_input('direccion', set_value('direccion', $alumno->direccion), array('class'=>'form-control', 'disabled'=>'')); ?>
 		           		</div>
 	      			</div>
 	      		</div>
@@ -69,7 +69,7 @@
 	      			<div class="col-md-12">
 	      				<div class="form-group">
 	              		<?php echo form_label('Grado:'); ?>
-		              	<?php echo form_input('nombre', set_value('nombre', $alumno->nombre), array('class'=>'form-control', 'disabled'=>'')); ?>
+		              	<?php echo form_input('grado', set_value('grado', $alumno->grado), array('class'=>'form-control', 'disabled'=>'')); ?>
 		           		</div>
 	      			</div>
 	      		</div>
@@ -78,7 +78,7 @@
 	      			<div class="col-md-12">
 	      				<div class="form-group">
 	              		<?php echo form_label('Grupo:'); ?>
-		              	<?php echo form_input('nombre', set_value('nombre', $alumno->nombre), array('class'=>'form-control', 'disabled'=>'')); ?>
+		              	<?php echo form_input('grupo', set_value('grupo', $alumno->grupo), array('class'=>'form-control', 'disabled'=>'')); ?>
 		           		</div>
 	      			</div>
 	      		</div>
