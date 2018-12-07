@@ -41,8 +41,8 @@ class Salidas extends CI_Controller {
 			$this->index();
 		} else {
 			$ine = $this->input->post('ine');
-			if($this->Padres_model->findByINE($ine)) {
-				$padre = $this->Padres_model->findByINE($ine);
+			$padre = $this->Padres_model->findByINE($ine);
+			if($this->Padres_model->findByINE($ine) && $this->Alumnos_model->findByPadre($padre->id)) {
 				$data['padre'] = $padre;
 				$data['alumno'] = $this->Alumnos_model->findByPadre($padre->id);
 
